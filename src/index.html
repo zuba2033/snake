@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="score">
+            <div class="stopwatch">
+                Time: <span class="min">00</span>:<span class="sec">00</span>:<span class="ms">00</span>
+            </div>
+            <p class="current">Score: <span>0</span></p>
+            <p class="best">Best: <span>0</span></p>
+            <p class="try">Try: <span>1</span></p>
+        </div>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <div class="modal">
+            <div class="modal__dialog">
+                <div class="modal__content">
+                    <div>
+                        <div class="modal__close" data-close>&times;</div>
+                        <div class="modal__text">Game Over!</div>
+                        <div class="modal__text">Your Score: 
+                            <span></span>
+                        </div>
+                        <div class="modal__text modal__time">
+                            Your time: <span><span class="min">00</span>:<span class="sec">00</span>:<span class="ms">00</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js" ></script>
+
+</body>
+</html>

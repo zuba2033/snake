@@ -13,45 +13,27 @@ interval = setInterval(stopwatch, 10);
 function stopwatch() {
     ms++;
 
-    if(ms < 10) {
-        msElem.forEach(elem => {
-            elem.textContent = '0' + ms;
-        });
-    } else {
-        msElem.forEach(elem => {
-            elem.textContent = ms;
-        });
-    }
-
+    msElem.forEach(elem => {
+        elem.textContent = styleNum(ms);
+    });
+    
     if (ms > 99) {
         sec++;
         ms = 0;
     }
 
-    if(sec < 10) {
-        secElem.forEach(elem => {
-            elem.textContent = '0' + sec;
-        });
-    } else {
-        secElem.forEach(elem => {
-            elem.textContent = sec;
-        });
-    }
+    secElem.forEach(elem => {
+        elem.textContent = styleNum(sec);
+    });
 
     if (sec > 60) {
         min++;
         sec = 0;
     }
 
-    if(min < 10) {
-        minElem.forEach(elem => {
-            elem.textContent = '0' + min;
-        });
-    } else {
-        minElem.forEach(elem => {
-            elem.textContent = min;
-        });
-    }
+    minElem.forEach(elem => {
+        elem.textContent = styleNum(min);
+    });
 
 }
 
@@ -63,6 +45,13 @@ function clearStopwatch() {
     interval = setInterval(stopwatch, 10);
 }
 
+function styleNum(num) {
+    if (num < 10) {
+        return '0' + num;
+    } else {
+        return num
+    }
+}
 
 
 
@@ -169,6 +158,7 @@ function loop() {
 
         for(let i = index + 1; i < snake.body.length; i++) {
             if (snake.x == snake.body[i].x && snake.y == snake.body[i].y ) {
+
                 modalScore.textContent = currentScore;
                 
                 openModal();
@@ -183,8 +173,6 @@ function loop() {
                    localStorage.setItem('bestScore', bestScore);
                    best.textContent = bestScore; 
                 }
-
-
 
                 currentScore = 0;
                 current.textContent = currentScore;
@@ -223,10 +211,6 @@ function openModal() {
 
 function closeModal() {
 
-    clearStopwatch();
-    
-    requestAnimationFrame(loop);
-
     modal.classList.add('hide');
     modal.classList.remove('show');
 
@@ -254,11 +238,15 @@ document.addEventListener('keydown', e => {
 modal.addEventListener('click', (e) => {
     if (e.target === modal || e.target.getAttribute('data-close') == '') {
         closeModal();
+        clearStopwatch();
+        requestAnimationFrame(loop);
     }
 });
 
 document.addEventListener('keydown', (e) => {
     if (e.code === "Escape" && modal.classList.contains('show')) { 
+        clearStopwatch();
+        requestAnimationFrame(loop);
         closeModal();
     }
 });

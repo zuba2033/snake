@@ -103,7 +103,6 @@ function getRandomInt(min, max) {
 
 function loop() {
 
-
     let requestLoop = requestAnimationFrame(loop);
 
     if (++count < 4) return;
